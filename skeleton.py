@@ -19,7 +19,7 @@ def checksum(str):
         csum = csum + thisVal
         count = count + 2
 
-    if counTo < len(str):
+    if countTo < len(str):
         csum = csum + ord(str[len(str) - 1])
         csum = csum & 0xffffffffL
 
@@ -48,7 +48,7 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         #Biold the "Reply from" message and return it
         #Fill in end
 
-        time left = timeLeft - howLongInSelect
+        timeLeft = timeLeft - howLongInSelect
         if timeLeft <= 0:
             return TIMEOUT_MESSAGE, 0
 
