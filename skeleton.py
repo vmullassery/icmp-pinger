@@ -83,6 +83,7 @@ def doOnePing(destAddr, timeout):
 
     #Fill in start
     # Create raw socket here
+    mySocket = socket(AF_INET, SOCK_RAW, icmp)
     #Fill in end
 
     myID = os.getpid() & 0xFFFF  # Return the current process i
