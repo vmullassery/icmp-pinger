@@ -9,9 +9,6 @@ import binascii
 ICMP_ECHO_REQUEST = 8
 TIMEOUT_MESSAGE = "Request timed out."
 
-#rtt_min = rtt_max = rtt_sum = rtt_cnt = None
-#global rtt_min, rtt_max, rtt_sum, rtt_cnt, cnt
-
 rtt_min = float('+inf')
 rtt_max = float('-inf')
 rtt_sum = 0
@@ -56,7 +53,6 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         #Fill in start
         # Fetch the ICMPHeader from the IP, extract the various header fields
         #Build the "Reply from" message and return it
-        #icmpHeader = recPacket[20:28]
         icmpType, code, checksum, packetID, seq = struct.unpack("bbHHh", recPacket[20:28])
 
         if icmpType != 0:
@@ -81,10 +77,7 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         length = len(recPacket) - 20
 
         feedback = 'Reply from {}: bytes={} time={:.7f}ms TTL={}'.format(saddr, length, rtt, ttl)
-        return feedback, 0
-
-
-
+        return feedback, rtt
         #Fill in end
 
         timeLeft = timeLeft - howLongInSelect
