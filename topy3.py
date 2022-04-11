@@ -17,11 +17,12 @@ cnt = 0
 
 def checksum(str):
     csum = 0
-    countTo = (len(str) / 2) * 2
+    str = bytearray(str)
+    countTo = (len(str) // 2) * 2
 
     count = 0
     while count < countTo:
-        thisVal = ord(str[count+1]) * 256 + ord(str[count])
+        thisVal = str[count+1] * 256 + str[count]
         csum = csum + thisVal
         count = count + 2
 
@@ -150,10 +151,10 @@ def ping(host, maxIter, timeout=1):
         numIter = numIter + 1
     
     print("")
-    print('-----Ping statstics for {}:-----').format(host)
-    print('Packets: Sent = {}, Received = {}, Lost = ({}% loss)').format(cnt, rtt_cnt, 100.0 - rtt_cnt * 100.0 / cnt)
+    print('-----Ping statstics for {}:-----'.format(host))
+    print('Packets: Sent = {}, Received = {}, Lost = ({}% loss)'.format(cnt, rtt_cnt, 100.0 - rtt_cnt * 100.0 / cnt))
     if rtt_cnt != 0:
-        print('Average delay is {:.7f}ms, min delay is {:.7f}ms, max delay is {:.7f}ms').format(rtt_sum / rtt_cnt, rtt_min, rtt_max)
+        print('Average delay is {:.7f}ms, min delay is {:.7f}ms, max delay is {:.7f}ms'.format(rtt_sum / rtt_cnt, rtt_min, rtt_max))
     print("")
     return feedback
 
