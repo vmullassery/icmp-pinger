@@ -138,23 +138,23 @@ def ping(host, maxIter, timeout=1):
     cnt = 0
 
     dest = gethostbyname(host)
-    print ""
-    print "Pinging " + host + " [" + dest + "] using Python:"
-    print ""
+    print("")
+    print("Pinging " + host + " [" + dest + "] using Python:")
+    print("")
     # Send ping requests to a server separated by approximately one second
     numIter = 0
     while numIter < maxIter:
         feedback, delayValue = doOnePing(dest, timeout)
-        print feedback
+        print(feedback)
         time.sleep(1) # one second
         numIter = numIter + 1
     
-    print ""
-    print '-----Ping statstics for {}:-----'.format(host)
-    print 'Packets: Sent = {}, Received = {}, Lost = ({}% loss)'.format(cnt, rtt_cnt, 100.0 - rtt_cnt * 100.0 / cnt)
+    print("")
+    print('-----Ping statstics for {}:-----').format(host)
+    print('Packets: Sent = {}, Received = {}, Lost = ({}% loss)').format(cnt, rtt_cnt, 100.0 - rtt_cnt * 100.0 / cnt)
     if rtt_cnt != 0:
-        print 'Average delay is {:.7f}ms, min delay is {:.7f}ms, max delay is {:.7f}ms'.format(rtt_sum / rtt_cnt, rtt_min, rtt_max)
-    print ""
+        print('Average delay is {:.7f}ms, min delay is {:.7f}ms, max delay is {:.7f}ms').format(rtt_sum / rtt_cnt, rtt_min, rtt_max)
+    print("")
     return feedback
 
 ping("localhost", 3) # To test the code
